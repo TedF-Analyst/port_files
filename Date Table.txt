@@ -1,3 +1,69 @@
+/*  Code used to create a date table for Power BI
+    Up to 55 columns are created
+    Contains options if a companies fiscal year does not align with the calendar year
+    Contains options to start work weeks on Sunday or Monday
+*/
+
+/*  Created columns include:
+Date	(1/1/2022)
+Year	(2022)
+Current Year Offset	(-1)
+Year Completed	(True)
+Quarter Number	(1)
+Quarter	(Q1)
+Start of Quarter	(1/1/2022)
+End of Quarter	(3/31/2022)
+Quarter & Year	(Q1 2022)
+Quarter & Year	(20221)
+Current Quarter Offset	(-4)
+Quarter Completed	(True)
+Month	(1)
+Start of Month	(1/1/2022)
+End of Month	(1/31/2022)
+Month & Year	Jan 2022
+Month & Year	(202201)
+Current Month Offset	(-12)
+Month Completed	(True)
+Month Name	(January)
+Month Short	(Jan)
+Month Initial	(J)
+Day of Month	(1)
+Week Number	(1)
+Start of Week	(12/26/2021)
+End of Week	(1/1/2022)
+Week & Year	(W01 2022)
+Week & Year	(202101
+Current Week Offset	(-55)
+Week Completed	(True)
+Day of Week Number	(0)
+Day of Week	(Sunday)
+Day of Week Initial	(Su)
+DateInt	(20220101)
+Current Day Offset	(-379)
+Is After Today	(False)
+Is Week Day	(False)
+Is Holiday	(True)
+Is Business Day	(False)
+Day Type	(Weekend)
+Is Current Fiscal Year	(False)
+Is Prior YTD	(True)
+Is Prior FYTD	(True)
+Fiscal Year	(2022)
+FY Current Offset	(-1)
+Fiscal Quarter	(FQ1 2022)
+Fiscal Quarter & Year	20221
+Fiscal Month	(FMJan 2021)
+Fiscal Period & Year	(20221)
+Fiscal Week	(FW01 2022)
+Fiscal Week & Year	(202201)
+Is Current FY	(False)
+Is Current FQ	(False)
+Is Current FM	(False)
+Is Current FW	(False)
+*/
+
+
+
 let
   fnDateTable = (
     StartDate as date,
@@ -385,7 +451,8 @@ let
       AddFP = Table.AddColumn(
         AddFM,
         "Fiscal Month",
-        each Text.PadStart(Text.From([Month Short]), 3, "0")
+        each "FM"
+        & Text.PadStart(Text.From([Month Short]), 3, "0")
           & " "
           & (
             if [Month] >= FYStartMonth and FYStartMonth > 1 then
@@ -806,7 +873,7 @@ let
               "FWeeknYear",
               "Fiscal CurrYearOffset",
               "IsCurrentFQ",
-              "IsCurrentFP",
+              "IsCurrentFM",
               "IsCurrentFW"
             }
           )
