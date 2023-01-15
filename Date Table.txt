@@ -890,6 +890,8 @@ let
     Documentation.LongDescription = " Create calendar including FY",
     Documentation.Category = " Table",
     Documentation.Version = " 4 ",
+    Documentation.Author = "Melissa de Korte"
+    Documentation.Editor = "Ted Forrett"
     Documentation.Source = " local",
     Documentation.Examples = {
       [
